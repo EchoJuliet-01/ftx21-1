@@ -21,11 +21,11 @@ if __name__ == '__main__':
         sys.exit(1)
 
     print("Your callsign is: "+call())
-    if(grid):
-        if(len(grid())<4):
+    if(ini_grid()):
+        if(len(ini_grid())<4):
             print("Your grid is set, but must be at least four characters. Please update GRID.")
         else:
-            print("Your grid is: "+grid())
+            print("Your grid is: "+ini_grid())
     else:
         print("Your grid must be set in order to port PIR1 status.")
     if(spot()):
@@ -44,4 +44,4 @@ if __name__ == '__main__':
         print("Your system is configured to write logs.")
     else:
         printf("Your system is not configured to write logs. If you're an Aggregation Station, you should fix this. If you're not, writing logs is optional.")
-    print("Your INFO field is currently set to: "+info())
+    print("Your INFO field is currently set to: "+ini_info())
