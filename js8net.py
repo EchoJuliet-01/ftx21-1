@@ -3,6 +3,7 @@
 
 # AmRRON, EJ-01
 
+import sys
 import socket
 import json
 import time
@@ -40,7 +41,10 @@ def tx_thread(name):
     while(True):
         thing=json.dumps(tx_queue.get())
         with tx_lock:
-            s.sendall(bytes(thing+"\r\n",'utf-8'))
+            if(sys.version_info>(3,0)):
+                s.sendall(bytes(thing+"\r\n",'utf-8'))
+            else:
+                s.sendall(thing+"\r\n")
         time.sleep(0.25)
 
 # Due to the way JS8Call sends data to an API client (ie, it just
@@ -112,10 +116,18 @@ def start_net(host,port):
     s.settimeout(1)
 
     # Start the RX thread.
-    thread1=Thread(target=rx_thread,args=("RX Thread",),daemon=True)
+    if(sys.version_info>(3,0)):
+        thread1=Thread(target=rx_thread,args=("RX Thread",),daemon=True)
+    else:
+        thread1=Thread(target=rx_thread,args=("RX Thread",))
+        thread1.daemon=True
     thread1.start()
     # Start the TX thread.
-    thread2=Thread(target=tx_thread,args=("TX Thread",),daemon=True)
+    if(sys.version_info>(3,0)):
+        thread2=Thread(target=tx_thread,args=("TX Thread",),daemon=True)
+    else:
+        thread2=Thread(target=tx_thread,args=("TX Thread",))
+        thread2.daemon=True
     thread2.start()
 
 if __name__ == '__main__':
