@@ -88,7 +88,7 @@ def aprs_spot():
         return(False)
 
 # Return the configured Grid Square.
-def grid():
+def ini_grid():
     return(config['[Configuration]']["MyGrid"])
 
 # Return a list of configured Call Groups.
@@ -96,7 +96,7 @@ def groups():
     return(list(map(lambda n: n.strip().replace("@@","@"),config['[Configuration]']["MyGroups"].split(","))))
 
 # Return the currently configured INFO field.
-def info():
+def ini_info():
     return(config['[Configuration]']["MyInfo"])
 
 # Return the currently configured STATUS field.
