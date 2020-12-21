@@ -131,13 +131,4 @@ def start_net(host,port):
     thread2.start()
 
 if __name__ == '__main__':
-    start_net("localhost",2442)
-    time.sleep(3)
-
-    print(get_info())
-    print(get_grid())
-
-    time.sleep(1)
-
-    set_info("FART FART FART")
-    print(get_info())
+    print("This is a library and is not intended for stand-alone execution.")

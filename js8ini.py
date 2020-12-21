@@ -187,3 +187,6 @@ def auto_grid():
 # Dial frequency of the radio in hz.
 def dial_freq():
     return(config['[Common]']["DialFreq"])
+
+if __name__ == '__main__':
+    print("This is a library and is not intended for stand-alone execution.")
