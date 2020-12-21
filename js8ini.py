@@ -28,7 +28,7 @@ def load_js8_ini(ini_file=False):
         # below and exit, and the user will have to specify their
         # config file manually.
         user=expanduser("~").split("/")[2]
-        fname="/cygdrive/c/"+user+"/AppData/Local/JS8Call/JS8Call.ini"
+        fname="/cygdrive/c/Users/"+user+"/AppData/Local/JS8Call/JS8Call.ini"
     elif(platform.system()=="Darwin"):
         # If this is a Mac is the default config location.
         fname=expanduser("~/Library/Preferences/JS8Call.ini")
@@ -66,11 +66,26 @@ def call():
 
 # True of SPOT is enabled.
 def spot():
-    return(config['[Common]']["UploadSpots"])
+    if("UploadSpots" in config['[Common]'].keys()):
+        if(config['[Common]']["UploadSpots"]=="true"):
+            return(True)
+        else:
+            return(False)
+    elif("PSKReporter" in config['[Configuration]'].keys()):
+        if(config['[Configuration]']["PSKReporter"]=="true"):
+            return(True)
+        else:
+            return(False)
+    else:
+        print("This can't happen.")
+        return(False)
 
 # True if APRS spotting is enabled.
 def aprs_spot():
-    return(config['[Configuration]']["SpotToAPRS"])
+    if(config['[Configuration]']["SpotToAPRS"]=="true"):
+        return(True)
+    else:
+        return(False)
 
 # Return the configured Grid Square.
 def grid():
@@ -98,7 +113,10 @@ def station():
 
 # True if the TCP API is enabled.
 def tcp_enabled():
-    return(config['[Configuration]']["TCPEnabled"])
+    if(config['[Configuration]']["TCPEnabled"]=="true"):
+        return(True)
+    else:
+        return(False)
 
 # Return the number of allowed TCP connections.
 def tcp_conns():
@@ -114,7 +132,18 @@ def tcp_port():
 
 # True if heartbeats are allowed outside of the heartbeat sub-band.
 def hb_sub():
-    return(config['[Common]']["SubModeHB"])
+    if(config['[Common]']["SubModeHB"]=="true"):
+        return(True)
+    else:
+        return(False)
+
+# True if heartbeat acks are allowed outside of the heartbeat
+# sub-band.
+def hb_sub_ack():
+    if(config['[Common]']["SubModeHBAck"]=="true"):
+        return(True)
+    else:
+        return(False)
 
 # Offset in hz within the band (ie, added to dial freq).
 def tx_freq():
@@ -122,23 +151,38 @@ def tx_freq():
 
 # True if the system is configured to write log files.
 def write_logs():
-    return(config['[Configuration]']["WriteLogs"])
+    if(config['[Configuration]']["WriteLogs"]=="true"):
+        return(True)
+    else:
+        return(False)
 
 # True if the system is allowed to beacon anywhere.
 def beacon_anywhere():
-    return(config['[Configuration]']["BeaconAnywhere"])
+    if(config['[Configuration]']["BeaconAnywhere"]=="true"):
+        return(True)
+    else:
+        return(False)
 
 # True if the system is configured to automatically reply.
 def autoreplyonatstartup():
-    return(config['[Configuration]']["AutoreplyOnAtStartup"])
+    if(config['[Configuration]']["AutoreplyOnAtStartup"]=="true"):
+        return(True)
+    else:
+        return(False)
 
 # True if the system is configured to accept TCP connections.
 def accept_tcp_requests():
-    return(config['[Configuration]']["AcceptTCPRequests"])
+    if(config['[Configuration]']["AcceptTCPRequests"]=="true"):
+        return(True)
+    else:
+        return(False)
 
 # True if the system allows INFO, STATUS, GRID, etc changes via API.
 def auto_grid():
-    return(config['[Configuration]']["AutoGrid"])
+    if(config['[Configuration]']["AutoGrid"]=="true"):
+        return(True)
+    else:
+        return(False)
 
 # Dial frequency of the radio in hz.
 def dial_freq():
