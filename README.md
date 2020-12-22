@@ -12,8 +12,46 @@ This software has been written to be compatible with both Python2 and Python3. I
 
 There are two libraries included with this software (js8ini.py and js8net.py). These libraries are not intended to be run as stand-alone programs; they provide additional functionality to the two applications. No other libraries outside of the core python functionality are required to use this software. The code in these libraries was factored out to make future software with differing requirements quick and easy to implement.
 
-# Example
+# Examples
 
-This section will include example usage. TODO.
+### Linux
+```
+nobody@mother:~/ftx6$ ./ftx6_config_check.py
+Config file: /home/nobody/.config/JS8Call.ini
+Your callsign is: N0CLU
+Your grid is: EL69
+SPOTting to PSKReporter is properly disabled for this exercise.
+APRS reporting is properly disabled for this exercise.
+@AMRFTX is present in Callsign Groups.
+Your system is configured to write logs.
+Your INFO field is currently set to: "IC-7300 @ 10W, G5RV @ 25FT"
+nobody@mother:~/ftx6$
+```
+### Mac/OSX
+```
+nobody@MBP ftx6 % ./ftx6_config_check.py
+Config file: /Users/nobody/Library/Preferences/JS8Call.ini
+Your callsign is: N0CLU
+Your grid is: EL69
+SPOTting to PSKReporter is properly disabled for this exercise.
+APRS reporting is properly disabled for this exercise.
+@AMRFTX is present in Callsign Groups.
+Your system is configured to write logs.
+Your INFO field is currently set to: "IC-7300 @ 10W, G5RV @ 25FT"
+nobody@MBP ftx6 %
+```
+### Windows
+```
+C:\Users\Nobody\ftx6>python ftx6_config_check.py
+Config file: C:\Users\Nobody/AppData/Local/JS8Call/JS8Call.ini
+Your callsign is: N0CLU
+Your grid is: EL69
+SPOTting to PSKReporter is properly disabled for this exercise.
+APRS reporting is properly disabled for this exercise.
+@AMRFTX is present in Callsign Groups.
+Your system is configured to write logs.
+Your INFO field is currently set to: "IC-7300 @ 10W, G5RV @ 25FT"
+C:\Users\Nobody\ftx6>
+```
 
 EJ-01
