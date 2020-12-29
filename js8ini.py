@@ -56,7 +56,7 @@ def load_js8_ini(ini_file=False):
             section=line
         else:
             if(re.search("=",line)):
-                stuff=line.split("=",2)
+                stuff=line.split("=",1)
                 config[section][stuff[0]]=stuff[1]
     return([True,fname])
 

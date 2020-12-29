@@ -9,7 +9,12 @@ import json
 import time
 import threading
 from threading import Thread
-from queue import Queue
+
+# Because Python2 and Python3 just *HAVE* to be different...
+if(sys.version_info>(3,0)):
+    from queue import Queue
+else:
+    from Queue import Queue
 
 # These are our global objects (and locks for them).
 global tx_queue

@@ -27,13 +27,18 @@ if __name__ == '__main__':
     my_info=False
 
     if(tcp_enabled() and tcp_conns()>0 and accept_tcp_requests()):
-        start_net(tcp_addr(),tcp_port())
-        time.sleep(1)
-        my_grid=get_grid()
-        my_info=get_info()
-        if(len(my_grid)>=4):
-            print("Your JS8Call API appears to be enabled and your grid square is set to: "+my_grid)
+        print("Connecting to JS8Call at address "+tcp_addr()+" on TCP port "+str(tcp_port())+"...")
+        try:
+            start_net(tcp_addr(),tcp_port())
             api=True
+        except:
+            print("Unable to connect to JS8Call instance via API...")
+        if(api):
+            time.sleep(1)
+            my_grid=get_grid()
+            my_info=get_info()
+            if(len(my_grid)>=4):
+                print("Your JS8Call API appears to be enabled and your grid square is set to: "+my_grid)
 
     if(not(my_grid)):
         my_grid=ini_grid()
@@ -55,7 +60,12 @@ if __name__ == '__main__':
                 qans=sys.stdin.readline().strip().upper()[0:1]
                 if(qans=="Y"):
                     set_info(my_grid[0:4]+";PIR1="+ans)
-                    print("INFO field has been set to \""+get_info()+"\".\n\nDue to a bug in JS8Call, this will not be reflected in the JS8Call GUI and the value will revert to the old value when JS8Call is restarted, but if you send your INFO field, the correct value will be sent over the air.")
+                    print("INFO field has been set to \""+get_info()+"\".\n\nDue to a bug in JS8Call, this will not be reflected in the JS8Call GUI and the value")
+                    print("will revert to the old value when JS8Call is restarted, but if you send your INFO field,")
+                    print("the correct value will be sent over the air.")
+                else:
+                    print("Please set your INFO field to:")
+                    print(my_grid[0:4]+";PIR1="+ans)
             else:
                 print("Please set your INFO field to:")
                 print(my_grid[0:4]+";PIR1="+ans)
